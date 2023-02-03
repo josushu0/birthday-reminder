@@ -1,0 +1,12 @@
+:root {
+	--color-primary: hsl(177,100%,14%);
+	--color-secondary: hsl(36,93%,68%);
+	--color-terciary: hsl(163,29%,75%);
+	--text-primary: hsl(60,100%,100%);
+	--text-secondary: hsl(178,100%,6%);
+}
+
+body {
+	color: var(--color-secondary);
+	background-color: var(--color-terciary);
+}
