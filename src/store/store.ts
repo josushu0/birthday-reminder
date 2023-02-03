@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import birthdaysReducer from './slices/bithdays/birthdaysSlice'
 
 export const store = configureStore({
-	reducer: {}
+	reducer: {
+		birthdays: birthdaysReducer
+	}
 })
 
 export type RootState = ReturnType<typeof store.getState>
