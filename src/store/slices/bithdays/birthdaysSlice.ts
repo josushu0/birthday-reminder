@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, query, getDocs } from 'firebase/firestore'
-import { db } from '../../../firebase/firebase'
 
 interface birthday {
 	name: string
@@ -13,11 +11,6 @@ interface birthdayState {
 	loading: 'loading' | 'succeeded'
 }
 
-interface timeTillToday {
-	birthday: [number, number]
-	time: number
-}
-
 const initialState = {
 	birthdays: [],
 	loading: 'loading'
@@ -26,19 +19,7 @@ const initialState = {
 export const getBirthdays = createAsyncThunk(
 	'birthdays/getBirthdays',
 	async () => {
-		const birthdaysRef = collection(db, 'birthdays')
-		const q = query(birthdaysRef)
-		const docs = await getDocs(q)
 		let birthdays: birthday[] = []
-		docs.forEach((doc) => {
-			const data = doc.data()
-			const [day, month] = data.birthday
-			birthdays.push({
-				name: data.name,
-				cake: data.cake,
-				birthday: [parseInt(day), parseInt(month)]
-			})
-		})
 		return birthdays
 	}
 )
