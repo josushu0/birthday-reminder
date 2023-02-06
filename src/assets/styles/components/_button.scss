@@ -1,10 +1,11 @@
-button {
+.button {
 	border-radius: 0.25rem; 
 	padding-block: 0.5rem;
 	padding-inline: 1rem;
 	background-color: var(--color-secondary);
 	border: none;
 	color: var(--text-secondary);
+	text-decoration: none;
 
 	&:hover {
 		filter: brightness(1.1);
