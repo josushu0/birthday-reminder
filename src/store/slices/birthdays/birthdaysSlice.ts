@@ -21,12 +21,19 @@ export const getBirthdays = createAsyncThunk(
 	async () => {
 		let birthdays: birthdayInfo[] = []
 		const records = await pb.collection('birthdays').getFullList()
+		const today = dayjs()
 		records.forEach((record) => {
+			let date = dayjs(record.date)
+			if(date.dayOfYear() < today.dayOfYear()) {
+				date = date.set('year', today.get('year') + 1)
+			} else {
+				date = date.set('year', today.get('year'))
+			}
 			birthdays.push({
 				id: record.id,
 				collectionId: record.collectionId,
 				name: record.name,
-				date: record.date,
+				date: date.toString(),
 				cake: record.cake,
 				photo: pb.getFileUrl(record, record.photo)
 			})
@@ -40,17 +47,9 @@ export const birthdaysSlice = createSlice({
 	initialState,
 	reducers: {
 		sortBirthdays(state) {
-			const today = dayjs()
-
 			state.birthdays.sort((a,b) => {
-				let dateA = dayjs(a.date).set('year', today.get('year'))
-				let dateB = dayjs(b.date).set('year', today.get('year'))
-				if (dateA.dayOfYear() < today.dayOfYear()) {
-					dateA = dateA.add(1, 'year')
-				}
-				if (dateB.dayOfYear() < today.dayOfYear()) {
-					dateB = dateB.add(1, 'year')
-				}
+				let dateA = dayjs(a.date)
+				let dateB = dayjs(b.date)
 				if(dateA.isBefore(dateB)) return -1
 				if(dateA.isAfter(dateB)) return 1
 				return 0
