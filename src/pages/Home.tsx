@@ -1,7 +1,7 @@
 import CardList from "../components/CardList"
 import Navbar from "../components/Navbar"
 import { useAppDispatch } from "../hooks/redux"
-import { getBirthdays, sortBirthdays } from "../store/slices/bithdays/birthdaysSlice"
+import { getBirthdays, sortBirthdays } from "../store/slices/birthdays/birthdaysSlice"
 
 function Home() {
 	const dispatch = useAppDispatch()
