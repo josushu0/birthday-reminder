@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import birthdaysReducer from './slices/bithdays/birthdaysSlice'
+import birthdaysReducer from './slices/birthdays/birthdaysSlice'
 
 export const store = configureStore({
 	reducer: {
