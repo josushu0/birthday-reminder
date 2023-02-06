@@ -14,14 +14,20 @@ function Card({birthdayInfo}: {birthdayInfo: birthdayInfo}) {
 		setActive(true)
 	}
 
+	function toggleActive() {
+		active ? setActive(false) : setActive(true)
+	}
+
 		return (
-		<div className="card">
+		<div className="card" onClick={toggleActive}>
 			<img src={birthdayInfo.photo} className="card__image" />
 			<div className="card__info">
+				{active &&
 					<>
 						<Countdown date={dateObject} />
 						<p>Pastel favorito: {cake}</p>
 					</>
+				}
 				<p>Nombre: {name}</p>
 				<p>Cumpleaños: {dateFormat}</p>	
 			</div>	
