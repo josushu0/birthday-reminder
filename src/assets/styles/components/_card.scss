@@ -1,6 +1,6 @@
 .card {
 	display: flex;
-	justify-content: space-between;
+	justify-content: left;
 	align-items: center;
 	padding: 1rem;
 	color: white;
@@ -8,18 +8,25 @@
 	border-radius: 0.25rem;
 	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 	width: 100%;
-	max-width: 430px;
+	max-width: 600px;
 
 	&__image {
 		border-radius: 0.25rem;
 		background-color: white;
-		height: 200px;
 		width: 150px;
 		margin-right: 1rem;
+
+		@media (max-width: 31.25em) {
+			width: 100px;
+		}
 	}
 }
 
 .card__info {
+	flex-grow: 1;
+	text-align: center;
+	font-size: clamp(0.9rem, 1.6vw + 0.4rem, 1.2rem);
+	
 	p:nth-child(2) {
 		text-transform: capitalize;
 	}
