@@ -4,6 +4,8 @@ import { birthdayInfo } from "../../../types"
 import dayjs from "dayjs"
 import dayOfYear from "dayjs/plugin/dayOfYear"
 
+dayjs.extend(dayOfYear)
+
 interface birthdayState {
 	birthdays: birthdayInfo[]
 	loading: 'loading' | 'succeeded'
@@ -39,11 +41,16 @@ export const birthdaysSlice = createSlice({
 	reducers: {
 		sortBirthdays(state) {
 			const today = dayjs()
+
 			state.birthdays.sort((a,b) => {
-				const dateA = dayjs(a.date)
-				const dateB = dayjs(b.date)
-				dateA.dayOfYear() < today.dayOfYear() ?? dateA.year(today.get('year') + 1)
-				dateB.dayOfYear() < today.dayOfYear() ?? dateB.year(today.get('year') + 1)
+				let dateA = dayjs(a.date).set('year', today.get('year'))
+				let dateB = dayjs(b.date).set('year', today.get('year'))
+				if (dateA.dayOfYear() < today.dayOfYear()) {
+					dateA = dateA.add(1, 'year')
+				}
+				if (dateB.dayOfYear() < today.dayOfYear()) {
+					dateB = dateB.add(1, 'year')
+				}
 				if(dateA.isBefore(dateB)) return -1
 				if(dateA.isAfter(dateB)) return 1
 				return 0
