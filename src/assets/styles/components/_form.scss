@@ -1,0 +1,34 @@
+.container {
+	width: 100vw;
+	padding-inline: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.birthdayForm {
+	width: 100%;
+	max-width: 600px;
+	background-color: var(--color-primary);
+	padding: 1rem;
+	border-radius: 0.25rem;
+
+	h1 {
+		text-align: center;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	input {
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+
+	.buttons {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
