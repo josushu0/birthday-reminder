@@ -2,7 +2,7 @@ import { birthdayInfo } from "../types"
 import dayjs from "dayjs"
 import "dayjs/locale/es"
 import Countdown from "./Countdown"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function Card({birthdayInfo}: {birthdayInfo: birthdayInfo}) {
 	const [active, setActive] = useState(false)
@@ -10,9 +10,12 @@ function Card({birthdayInfo}: {birthdayInfo: birthdayInfo}) {
 	const today = dayjs()
 	const dateObject = dayjs(date)
 	const dateFormat = dateObject.locale("es").format('D MMMM')
-	if (dateObject.diff(today, 'day') <= 7) {
-		setActive(true)
-	}
+
+	useEffect(() => {
+		if (dateObject.diff(today, 'day') <= 7) {
+			setActive(true)
+		}
+	},[])
 
 	function toggleActive() {
 		active ? setActive(false) : setActive(true)
