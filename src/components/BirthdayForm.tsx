@@ -1,7 +1,7 @@
 import { useState } from "react"
 import dayjs from "dayjs"
 import { pb } from "../pocketbase/pocketbase"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 interface form {
 	name: string,
@@ -17,6 +17,7 @@ function BirthdayForm() {
 		date: '',
 		photo: ''
 	})
+	const navigate = useNavigate()
 
 	const formData = new FormData()
 
@@ -27,6 +28,7 @@ function BirthdayForm() {
 		formData.append('date', dayjs(formState.date).toISOString())
 		formData.append('photo', formState.photo)
 		await pb.collection('birthdays').create(formData)
+		navigate('/')
 	}
 
 	function onInputChange({target}: {target: HTMLInputElement}) {
