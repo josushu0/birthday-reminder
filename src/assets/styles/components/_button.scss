@@ -18,3 +18,11 @@
 		outline-offset: 2px;
 	}
 }
+
+.button_cancel {
+	background-color: hsl(0,84,60);
+	margin-right: 1rem;
+	&:focus-visible {
+		outline-color: hsl(0,84,60);
+	}
+}
