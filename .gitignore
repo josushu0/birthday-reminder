@@ -7,7 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-server
+server/pb_data
+server/pocketbase
+
 node_modules
 dist
 dist-ssr
